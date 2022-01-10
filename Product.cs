@@ -61,17 +61,20 @@ namespace first_projet
         /// total value in stock
 
         /// </summary>
-        public void RemoveProduct(int quantity = 1)
+        public void RemoveProduct(int quantity = 0)
         {
 
             if (quantity < 1 || quantity > _Amount)
             {
-                Console.WriteLine("Inserar a quantidade correta a ser removido");
+                Console.WriteLine("Inserar a quantidade correta a ser removido \n Enter the correct amount to be removed");
+                //Console.WriteLine("Inserar a quantidade correta a ser removido");
+
             }
             else
             {
                 _Amount -= quantity;
-                Console.WriteLine($"Removeu {quantity} unid do produto {_NameProduct}\n Quantidade Atual {_Amount}");
+                Console.WriteLine($"Removeu {quantity} unidades do produto {_NameProduct} -- {_Amount} unid\n" +
+                    $"Removed {quantity} units from product {_NameProduct} -- {_Amount} units" );
             }
            // _Amount -= quantity;
         }

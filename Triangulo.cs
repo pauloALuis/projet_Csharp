@@ -6,20 +6,29 @@ using System.Threading.Tasks;
 
 namespace first_projet
 {
-    class Triangulo
+    class Triangulo : IEquatable<Triangulo>
     {
         private double _xA;
         private double _xB; 
         private double _xC;
 
-
-        public Triangulo ( double ladoA, double ladoB, int ladoC)
+        public Triangulo()
+        {}
+        public Triangulo ( double ladoA, double ladoB)
         {
             this._xA = ladoA;
             this._xB = ladoB;
-            this._xC = ladoC;
+          
 
         }
+
+        public Triangulo(double ladoA, double ladoB, int ladoC) : this()
+        {
+             this._xC = ladoC;
+            //this._xC = ladoB;
+
+        }
+
 
         public double  LadoA
         {
@@ -60,5 +69,48 @@ namespace first_projet
      
         }
 
+        public override bool Equals(object obj)
+        {
+            return obj is Triangulo triangulo &&
+                   _xA == triangulo._xA &&
+                   _xB == triangulo._xB &&
+                   _xC == triangulo._xC &&
+                   LadoA == triangulo.LadoA &&
+                   LadoB == triangulo.LadoB &&
+                   LadoC == triangulo.LadoC &&
+                   AreaTriangulo == triangulo.AreaTriangulo;
+        }
+
+        public bool Equals(Triangulo other)
+        {
+            return other != null &&
+                   _xA == other._xA &&
+                   _xB == other._xB &&
+                   _xC == other._xC &&
+                   LadoA == other.LadoA &&
+                   LadoB == other.LadoB &&
+                   LadoC == other.LadoC &&
+                   AreaTriangulo == other.AreaTriangulo;
+        }
+
+        public override string ToString()
+        {
+            return "Triangulo (_xA= " + _xA + ", _xB= " + _xB + ", _xC= " + _xC +")";
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_xA, _xB, _xC, LadoA, LadoB, LadoC, AreaTriangulo);
+        }
+
+        public static bool operator ==(Triangulo left, Triangulo right)
+        {
+            return EqualityComparer<Triangulo>.Default.Equals(left, right);
+        }
+
+        public static bool operator !=(Triangulo left, Triangulo right)
+        {
+            return !(left == right);
+        }
     }
 }

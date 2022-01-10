@@ -7,6 +7,16 @@ namespace first_projet
     {
         static void Main(string[] args)
         {
+
+
+            Employee2 employee2 = new Employee2( "Carlos Marcos",15, "");
+            Console.WriteLine(employee2);
+            Console.WriteLine(employee2.Password);
+
+            employee2.Age++;
+
+            employee2.Name="T0";
+            Console.WriteLine(employee2);
             /* double typeDouble = 10.0710;
 
              sbyte typeSByte = 100;
@@ -50,7 +60,23 @@ namespace first_projet
 
              Console.WriteLine($"Area: {triangulo.AreaTriangulo}");
              triangulo.PrintArea();
-             //Console.WriteLine($"Area: {triangulo.AreaTriangulo}");*/
+             //Console.WriteLine($"Area: {triangulo.AreaTriangulo}");
+            //Calculator.Circuference(100);
+
+            Console.WriteLine("circunferencia " + Calculator.Circuference(100));
+            student();
+
+            Triangulo triangulo = new Triangulo() { LadoA = 18.2, LadoB = 10.8, LadoC = 48};
+            Console.WriteLine(triangulo.ToString());
+
+            Employees();
+            Produts();*/
+
+
+        }
+
+        public static void Produts()
+        {
 
 
             Console.WriteLine("Insera nome do Produto: (Caneca) ");
@@ -59,19 +85,74 @@ namespace first_projet
 
             double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            Console.WriteLine("Quantidaed em Stock: (1) ");
+            Console.WriteLine("Quantidade adicionar em Stock: (1) ");
             int num = int.Parse(Console.ReadLine());
 
             Product product = new Product(name, price, num);
 
             Console.WriteLine(product);
 
+            Console.WriteLine("Quantidade a remover em Stock: (1) ");
+            num = int.Parse(Console.ReadLine());
+            product.RemoveProduct(num);
+
+            Console.WriteLine("Dados atualizados:\n  " + product);
         }
 
 
-        public static bool checkGreat(int numberA, int numberB)
+        public static bool CheckGreat(int numberA, int numberB)
         {
             return numberA < numberB;
+        }
+
+
+
+        public static void Employees()
+        {
+            Console.WriteLine("Insere nome trabalhador: (Joao) ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Insere Salario bruto: (150.2) ");
+
+            double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            Console.WriteLine("Insere o valor do Imposto ");
+            int num = int.Parse(Console.ReadLine());
+
+            Employee product = new Employee(name, price, num);
+
+            Console.WriteLine(product);
+
+            Console.WriteLine("Digite a Percentagem para aumentar o salario % : (10) ");
+            num = int.Parse(Console.ReadLine());
+            product.IncreaseSalary(num);
+
+            Console.WriteLine("Dados atualizados:\n  " + product);
+
+
+        }
+
+
+        public static void student()
+        {
+
+
+            Student aluno = new Student();
+
+            Console.WriteLine("Insere nome aluno: (Joao) ");
+            aluno.Name = Console.ReadLine();
+
+
+            //Console.WriteLine("Insere Salario bruto: (150.2) ");
+
+            //  double price = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            //Console.WriteLine("Insere o valor do Imposto ");
+            Console.WriteLine("Digite as três notas do aluno:");
+            aluno.Classification[0] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            aluno.Classification[1] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            aluno.Classification[2] = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            aluno.CheckApproval();
         }
     }
 }
